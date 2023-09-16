@@ -26,3 +26,36 @@ def drink_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         # return an error if the data is not valid
         return Response(serializer.errors, status=400)
+    
+@api_view(['GET', 'PUT', 'DELETE'])
+def drink_detail(request, id):
+    try:
+        # get the drink from the database
+        drink = Drink.objects.get(pk=id)
+    except Drink.DoesNotExist:
+        # return a 404 if the drink does not exist
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    if request.method == 'GET':
+        # serialize the drink
+        serializer = DrinkSerializer(drink)
+        # return the serialized data
+        return Response(serializer.data)
+    
+    if request.method == 'PUT':
+        # update the drink with the request data
+        serializer = DrinkSerializer(drink, data=request.data)
+        # check if the data is valid
+        if serializer.is_valid():
+            # save the updated drink to the database
+            serializer.save()
+            # return the serialized data
+            return Response(serializer.data)
+        # return an error if the data is not valid
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    if request.method == 'DELETE':
+        # delete the drink from the database
+        drink.delete()
+        # return a 204 response
+        return Response(status=status.HTTP_204_NO_CONTENT)
