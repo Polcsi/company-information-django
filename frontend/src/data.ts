@@ -4,4 +4,7 @@ export const jobTitles: string[] = [
   "software developer",
   "software tester",
   "manager",
+  "data scientist",
+  "data analyst",
+  "ui/ux designer",
 ];

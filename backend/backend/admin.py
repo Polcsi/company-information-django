@@ -1,4 +1,7 @@
 from django.contrib import admin
-from .models import Drink
+from .models.company_model import Company
+from .models.employee_model import Employee
 
-admin.site.register(Drink)
+admin.site.register(Company)
+admin.site.register(Employee)
+# admin.site.register(Employee)

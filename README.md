@@ -3,7 +3,7 @@
 Application seperated three pages:
 
 - "/" home page
-- "results" where after the form submission the data going to be represented
+- "/results" where after the form submission the data going to be represented
 - "/\*" error page: when the user navigates to a non-implemented page
 
 The pages have very clean looking and designed make the page easy to use for the user. Every single page is responsive so it will look good on mobile and large screens.

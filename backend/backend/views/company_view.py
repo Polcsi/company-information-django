@@ -1,53 +1,53 @@
 from django.http import JsonResponse
-from .models import Drink
-from .serializers import DrinkSerializer
+from ..models.company_model import Company
+from ..serializers.company_serializer import CompanySerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 
 @api_view(['GET', 'POST'])
-def drink_list(request):
+def company_list(request, format=None):
     if request.method == 'GET':
-        # get all drinks from the database
-        drinks = Drink.objects.all()
-        # serialize the drinks
-        serializer = DrinkSerializer(drinks, many=True)
+        # get all companies from the database
+        companies = Company.objects.all()
+        # serialize the companies
+        serializer = CompanySerializer(companies, many=True)
         # return the serialized data
         return JsonResponse(serializer.data, safe=False)
     
     if request.method == 'POST':
-        # create a new drink from the request data
-        serializer = DrinkSerializer(data=request.data)
+        # create a new company from the request data
+        serializer = CompanySerializer(data=request.data)
         # check if the data is valid
         if serializer.is_valid():
-            # save the new drink to the database
+            # save the new company to the database
             serializer.save()
             # return the serialized data
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         # return an error if the data is not valid
-        return Response(serializer.errors, status=400)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 @api_view(['GET', 'PUT', 'DELETE'])
-def drink_detail(request, id):
+def company_detail(request, id, format=None):
     try:
-        # get the drink from the database
-        drink = Drink.objects.get(pk=id)
-    except Drink.DoesNotExist:
-        # return a 404 if the drink does not exist
+        # get the company from the database
+        company = Company.objects.get(pk=id)
+    except Company.DoesNotExist:
+        # return a 404 if the company does not exist
         return Response(status=status.HTTP_404_NOT_FOUND)
     
     if request.method == 'GET':
-        # serialize the drink
-        serializer = DrinkSerializer(drink)
+        # serialize the company
+        serializer = CompanySerializer(company)
         # return the serialized data
         return Response(serializer.data)
     
     if request.method == 'PUT':
-        # update the drink with the request data
-        serializer = DrinkSerializer(drink, data=request.data)
+        # update the company with the request data
+        serializer = CompanySerializer(company, data=request.data)
         # check if the data is valid
         if serializer.is_valid():
-            # save the updated drink to the database
+            # save the updated company to the database
             serializer.save()
             # return the serialized data
             return Response(serializer.data)
@@ -55,7 +55,7 @@ def drink_detail(request, id):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     if request.method == 'DELETE':
-        # delete the drink from the database
-        drink.delete()
+        # delete the company from the database
+        company.delete()
         # return a 204 response
         return Response(status=status.HTTP_204_NO_CONTENT)
