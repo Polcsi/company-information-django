@@ -18,7 +18,7 @@ class Employee(models.Model):
     email = models.CharField(max_length=50)
     age = models.IntegerField(default=18, validators=[MinValueValidator(18), MaxValueValidator(100)])
     job = models.CharField(max_length=50, choices=JOB_CHOICES, default='Software Engineer')
-    cv = models.CharField(max_length=500, null=True)
+    cv = models.CharField(max_length=500, null=True, blank=True)
     
     def __str__(self):
         return self.name + ' - ' + self.email + ' - ' + self.job + ' - ' + self.companyID.name
