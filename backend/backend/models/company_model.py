@@ -7,4 +7,4 @@ class Company(models.Model):
     description = models.CharField(max_length=500,blank=True, null=True)
     
     def __str__(self):
-        return self.name
+        return self.name + " (" + str(self.companyID) + ")"

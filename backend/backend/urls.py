@@ -10,6 +10,8 @@ urlpatterns = [
     # Company URLs
     path('company/', company_view.company_list),
     path('company/<int:id>', company_view.company_detail),
+    path('company/<int:id>/employees', company_view.company_employees),
+    path('company/add_employees', company_view.company_add_employee),
     # Employee URLs
     path('employee/', employee_view.employee_list),
     path('employee/<int:id>', employee_view.employee_detail),
