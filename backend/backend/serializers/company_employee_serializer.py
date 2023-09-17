@@ -34,7 +34,6 @@ class CompanyEmployeeSerializer(serializers.ModelSerializer):
         keep_employees = []
         existing_ids = [employee.employeeID for employee in instance[0].employees.all()]
         for employee_data in employees_data:
-            print(employee_data)
             if 'employeeID' in employee_data.keys():
                 if Employee.objects.filter(employeeID=employee_data['employeeID']).exists():
                     print("Employee exists")

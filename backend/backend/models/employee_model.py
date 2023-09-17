@@ -13,7 +13,7 @@ class Employee(models.Model):
         ('Software Tester', 'Software Tester')
     ]
     employeeID = models.BigAutoField(primary_key=True)
-    companyID = models.ForeignKey(Company, related_name='employees', on_delete=models.CASCADE)
+    companyID = models.ForeignKey(Company, db_column="companyID", related_name='employees', on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     email = models.CharField(max_length=50)
     age = models.IntegerField(default=18, validators=[MinValueValidator(18), MaxValueValidator(100)])

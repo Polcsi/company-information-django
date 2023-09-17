@@ -77,7 +77,7 @@ def company_employees(request, id, format=None):
         return Response(serializer.data)
     if request.method == 'PUT':
         # update the company with the request data
-        serializer = CompanyEmployeeSerializer(company, data=request.data, many=False)
+        serializer = CompanyEmployeeSerializer(company, data=request.data)
         # check if the data is valid
         if serializer.is_valid():
             # save the updated company to the database
