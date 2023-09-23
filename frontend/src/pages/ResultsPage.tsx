@@ -11,6 +11,7 @@ import { MdOutlineEmail, MdDescription } from "react-icons/md";
 /* Import components */
 import TopScrollButton from "../components/TopScrollButton";
 import HomeButton from "../components/HomeButton";
+import Background from "../layout/Background";
 
 const ResultsPage = () => {
   const { dataJSON } = useGlobalContext();
@@ -36,7 +37,7 @@ const ResultsPage = () => {
   return (
     <>
       <HomeButton />
-      <div className="container results-page">
+      <Background className="results-page">
         <section className="company-card results-section">
           <h1>company information</h1>
           <div className="company-details">
@@ -109,7 +110,7 @@ const ResultsPage = () => {
             })}
           </div>
         </section>
-      </div>
+      </Background>
       <TopScrollButton />
     </>
   );

@@ -6,6 +6,7 @@ import "./style/index.css";
 import "./style/customSelect.css";
 import "./style/topScrollButton.css";
 import "./style/homeButton.css";
+import "./style/mainPage.css";
 import "react-toastify/dist/ReactToastify.css";
 import { GlobalContextProvider } from "./context";
 

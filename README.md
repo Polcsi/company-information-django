@@ -2,9 +2,10 @@
 
 Application seperated three pages:
 
-- "/" home page
-- "/results" where after the form submission the data going to be represented
-- "/\*" error page: when the user navigates to a non-implemented page
+- `"/"` home page
+- `"/create company"` where the user be able to create company
+- `"/results"` where after the form submission the data going to be represented
+- `"/\*"` error page: when the user navigates to a non-implemented page
 
 The pages have very clean looking and designed make the page easy to use for the user. Every single page is responsive so it will look good on mobile and large screens.
 
@@ -12,9 +13,15 @@ The pages have very clean looking and designed make the page easy to use for the
 
 ### Home Page "/"
 
-The home page includes a company form section where the user be able to give the company name, email address, number of employees and a short description about company. Furthermore there is an employees section on the home page which is dinamically rendered it depends on how many number of employees were given in the comapny section. In the employees section the user will be able to give the employee name, age, email, job and cv pdf file. The user can submit the forms with the submit button in the company section. After the user clicks on the submit button and all the required fields is filled then it navigates to the results page where the entered values will be represented.
+The MainPage component is a React component that renders the main page of the application. It contains two sections, one for displaying company information and another for creating a new company.
 
 ![home-page-image](/docs/images/main-page.png)
+
+### Create Company "/create-company"
+
+The create company page includes a company form section where the user be able to give the company name, email address, number of employees and a short description about company. Furthermore there is an employees section on the home page which is dinamically rendered it depends on how many number of employees were given in the comapny section. In the employees section the user will be able to give the employee name, age, email, job and cv pdf file. The user can submit the forms with the submit button in the company section. After the user clicks on the submit button and all the required fields is filled then it navigates to the results page where the entered values will be represented.
+
+![create-company-image](/docs/images/create-company.png)
 
 ---
 

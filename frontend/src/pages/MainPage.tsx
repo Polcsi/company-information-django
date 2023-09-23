@@ -1,70 +1,86 @@
-/* 
-  Home page for "/" route.
-*/
-
-import { useState, useEffect } from "react";
-import { useGlobalContext } from "../context";
-/* Import components */
-import CompanyDataForm from "../components/CompanyDataForm";
-import EmployeeDataForm from "../components/EmployeeDataForm";
-import TopScrollButton from "../components/TopScrollButton";
+import React from "react";
+import Background from "../layout/Background";
+import { GoOrganization } from "react-icons/go";
+import { SiAwsorganizations } from "react-icons/si";
+import { useNavigate } from "react-router-dom";
 
 const MainPage = () => {
-  const { numberOfEmployees } = useGlobalContext();
-  const [numberOfForms, setNumberOfForms] = useState<number[]>([]);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    /* Renders the number of employee forms based on how many employees setted on the slider */
-    setNumberOfForms([]);
-    for (let i = 0; i < numberOfEmployees; ++i) {
-      /* Append the 'i' value to the 'numberOfForms' array */
-      setNumberOfForms((prevForms) => [...prevForms, i]);
-    }
-
-    return () => {};
-  }, [numberOfEmployees]); // if the numberOfEmployees state variable change then re-render this component
   return (
-    <>
-      <TopScrollButton />
-      <div className="container">
-        <section className="company-section section">
-          <CompanyDataForm />
-        </section>
-        <section className="employee-section">
+    <Background>
+      <main
+        style={{
+          color: "white",
+          height: "100%",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "3rem",
+        }}
+      >
+        <header
+          style={{
+            textAlign: "center",
+            display: "flex",
+            flexDirection: "column",
+            gap: "1.5rem",
+          }}
+        >
+          <h1 style={{ fontSize: "clamp(2.2rem, 5vw, 2.8rem)" }}>
+            Welcome on the Home Page
+          </h1>
+          <p style={{ fontSize: "clamp(1.2rem, 3vw, 1.5rem)" }}>
+            Please choose what would you like to do
+          </p>
+        </header>
+        <section
+          style={{
+            textAlign: "center",
+            display: "flex",
+            justifyContent: "center",
+            flexWrap: "wrap",
+            gap: "3rem",
+          }}
+        >
           <div
-            className="employee-list"
-            onScroll={(e) => {
-              /* if the user scrolls the scrollbar become visible */
-              if (
-                (e.target as HTMLElement).classList.contains("on-scroll") ===
-                false
-              ) {
-                (e.target as HTMLElement).classList.add("on-scroll");
-              }
-            }}
-            onMouseEnter={(e) => {
-              /* Show scrollbar when the mouse enter in this element */
-              (e.target as HTMLElement).classList.add("on-scroll");
-            }}
-            onMouseLeave={(e) => {
-              /* Hide scrollbar when the mouse leave this element */
-              (e.target as HTMLElement).classList.remove("on-scroll");
-            }}
+            className="main-card section"
+            onClick={() => navigate("/companies")}
           >
-            {/* If number of employees is zero then show a message but if it is not zero then render employee forms */}
-            {numberOfEmployees === 0 ? (
-              <h4 className="zero-employee">Number of Employees is zero!</h4>
-            ) : (
-              numberOfForms.map((employeeForm, index) => {
-                return (
-                  <EmployeeDataForm key={index} number={employeeForm + 1} />
-                );
-              })
-            )}
+            <div className="main-card-icon">
+              <GoOrganization />
+            </div>
+            <span className="main-card-title">Company Information</span>
+            <p className="main-card-description">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Doloremque itaque mollitia voluptatum sint assumenda in totam
+              provident enim, fugiat accusantium.
+            </p>
+            <div className="main-page-indicator">
+              <span style={{ fontWeight: "600" }}>0</span>
+              <span>Copmany</span>
+            </div>
+          </div>
+          <div
+            className="main-card section"
+            onClick={() => navigate("/create-company")}
+          >
+            <div className="main-card-icon">
+              <SiAwsorganizations />
+            </div>
+            <span className="main-card-title">Create Company</span>
+            <p className="main-card-description">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Doloremque itaque mollitia voluptatum sint assumenda in totam
+              provident enim, fugiat accusantium.
+            </p>
+            <div className="main-page-indicator">Click to create</div>
           </div>
         </section>
-      </div>
-    </>
+      </main>
+    </Background>
   );
 };
 
