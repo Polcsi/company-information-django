@@ -2,10 +2,10 @@
 
 Application seperated three pages:
 
-- `"/"` home page
-- `"/create company"` where the user be able to create company
-- `"/results"` where after the form submission the data going to be represented
-- `"/\*"` error page: when the user navigates to a non-implemented page
+- `/` home page
+- `/create company` where the user be able to create company
+- `/results` where after the form submission the data going to be represented
+- `/*` error page: when the user navigates to a non-implemented page
 
 The pages have very clean looking and designed make the page easy to use for the user. Every single page is responsive so it will look good on mobile and large screens.
 
@@ -13,7 +13,7 @@ The pages have very clean looking and designed make the page easy to use for the
 
 ### Home Page "/"
 
-The MainPage component is a React component that renders the main page of the application. It contains two sections, one for displaying company information and another for creating a new company.
+It contains two sections, one for displaying company information and another for creating a new company. The user can decide wether want to create or displaying companies.
 
 ![home-page-image](/docs/images/main-page.png)
 
