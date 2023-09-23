@@ -7,6 +7,7 @@ import "./style/customSelect.css";
 import "./style/topScrollButton.css";
 import "./style/homeButton.css";
 import "./style/mainPage.css";
+import "./style/companiesPage.css";
 import "react-toastify/dist/ReactToastify.css";
 import { GlobalContextProvider } from "./context";
 

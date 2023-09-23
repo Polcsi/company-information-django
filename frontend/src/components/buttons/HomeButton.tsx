@@ -4,9 +4,13 @@
 import { Link } from "react-router-dom";
 import { IoIosArrowRoundBack } from "react-icons/io";
 
-const HomeButton = () => {
+interface HomeButtonProps {
+  to?: string;
+}
+
+const HomeButton = ({ to = "/" }: HomeButtonProps) => {
   return (
-    <Link className="home-button" to="/">
+    <Link className="home-button" to={to}>
       <IoIosArrowRoundBack />
     </Link>
   );

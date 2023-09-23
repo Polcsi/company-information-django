@@ -1,0 +1,109 @@
+.companies-page-layout {
+  display: grid;
+  justify-content: unset;
+  align-content: unset;
+  grid-template-areas: "card1 card2" "main main";
+}
+.companies-page-layout > .card {
+  width: 100%;
+  height: auto;
+  color: var(--text-color);
+  text-shadow: var(--text-shadow);
+}
+.companies-page-layout > .card:nth-child(1) {
+  grid-area: card1;
+}
+.companies-page-layout > .card:nth-child(2) {
+  grid-area: card2;
+}
+.companies-page-layout > .companies-page {
+  grid-area: main;
+}
+.companies-page {
+  width: 100%;
+  height: 500px;
+  color: var(--text-color);
+  text-shadow: var(--text-shadow);
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+  gap: 1rem;
+}
+.companies-page > header {
+  border-bottom: 2px solid var(--glassmorphic);
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.companies-page > header > h1 {
+  font-size: 2.7rem;
+  font-weight: 600;
+}
+.companies-page > header > p {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+/* Company List */
+.company-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.company-row {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease-in-out;
+  padding: 0.8rem 1rem;
+}
+.company-row:hover {
+  transform: scale(1.02);
+}
+.company-row-logo {
+  font-size: 2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  background: white;
+  color: black;
+  padding: 0.5rem;
+  border-radius: 9999px;
+}
+.company-row-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-left: 1rem;
+  color: black;
+  text-shadow: none;
+}
+.number-of-employees {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-left: auto;
+  color: black;
+  text-shadow: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.number-of-employees > span {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: black;
+  text-shadow: none;
+}
+.company-row-email {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-left: 40px;
+  color: black;
+  text-shadow: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

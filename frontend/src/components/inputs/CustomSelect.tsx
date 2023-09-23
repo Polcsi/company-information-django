@@ -2,8 +2,8 @@
   This component creates a custom select component.
 */
 
-import { useGlobalContext } from "../context";
-import { jobTitles } from "../data"; // The options stored in a seperate file
+import { useGlobalContext } from "../../context";
+import { jobTitles } from "../../data"; // The options stored in a seperate file
 
 const CustomSelect = () => {
   const { styleRequiredInput } = useGlobalContext();

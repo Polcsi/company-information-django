@@ -2,9 +2,9 @@
   Component for employee section. This compnent renders a single employee form.
 */
 import { FormEvent } from "react";
-import { useGlobalContext } from "../context";
+import { useGlobalContext } from "../../context";
 // import custom select component
-import CustomSelect from "./CustomSelect";
+import CustomSelect from "../inputs/CustomSelect";
 
 interface EmployeeDataFormProps {
   number: number;

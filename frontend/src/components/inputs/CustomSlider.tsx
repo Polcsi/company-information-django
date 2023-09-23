@@ -3,7 +3,7 @@
 */
 
 import { useEffect, useRef, useCallback } from "react";
-import { useGlobalContext } from "../context";
+import { useGlobalContext } from "../../context";
 
 interface CustomSliderProps {
   min: number;

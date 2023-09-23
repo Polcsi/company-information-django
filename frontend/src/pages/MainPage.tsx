@@ -1,10 +1,10 @@
-import React from "react";
 import Background from "../layout/Background";
 import { GoOrganization } from "react-icons/go";
 import { SiAwsorganizations } from "react-icons/si";
 import { useNavigate } from "react-router-dom";
 
 const MainPage = () => {
+  // useNavigate is a hook that allows us to navigate to a different page
   const navigate = useNavigate();
 
   return (

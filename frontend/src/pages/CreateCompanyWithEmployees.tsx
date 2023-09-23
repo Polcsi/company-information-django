@@ -5,10 +5,11 @@
 import { useState, useEffect } from "react";
 import { useGlobalContext } from "../context";
 /* Import components */
-import CompanyDataForm from "../components/CompanyDataForm";
-import EmployeeDataForm from "../components/EmployeeDataForm";
-import TopScrollButton from "../components/TopScrollButton";
+import CompanyDataForm from "../components/forms/CompanyDataForm";
+import EmployeeDataForm from "../components/forms/EmployeeDataForm";
+import TopScrollButton from "../components/buttons/TopScrollButton";
 import Background from "../layout/Background";
+import HomeButton from "../components/buttons/HomeButton";
 
 const CreateCompanyWithEmployees = () => {
   const { numberOfEmployees } = useGlobalContext();
@@ -27,6 +28,7 @@ const CreateCompanyWithEmployees = () => {
   return (
     <>
       <TopScrollButton />
+      <HomeButton />
       <Background>
         <section className="company-section section">
           <CompanyDataForm />

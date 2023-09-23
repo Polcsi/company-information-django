@@ -9,8 +9,8 @@ import { DataType, useGlobalContext } from "../context";
 import { FaUser, FaHashtag } from "react-icons/fa";
 import { MdOutlineEmail, MdDescription } from "react-icons/md";
 /* Import components */
-import TopScrollButton from "../components/TopScrollButton";
-import HomeButton from "../components/HomeButton";
+import TopScrollButton from "../components/buttons/TopScrollButton";
+import HomeButton from "../components/buttons/HomeButton";
 import Background from "../layout/Background";
 
 const ResultsPage = () => {
