@@ -2,6 +2,7 @@
   Context for variables and functions for multi access.
 */
 
+import axios from "axios";
 import {
   useState,
   useContext,
@@ -255,12 +256,26 @@ const useGlobalAppContext = ({}: GlobalContextType) => {
     const employeeFormsData = await validateEmployeeForms(employeeForms); // false if one of the employee form is not valid. If valid then returns an object of data
 
     if (companyFormData !== false && employeeFormsData !== false) {
-      /* if the company form and the employees form is not false the convert the json data to string */
+      /* if the company form and the employees form is not false then convert the json data to string */
       setDataJSON(
         JSON.stringify([
           { company: companyFormData, employees: employeeFormsData },
         ])
       );
+      console.log([{ company: companyFormData, employees: employeeFormsData }]);
+      try {
+        // send the data to the backend
+        await axios.post("http://127.0.0.1:8000/company/add_employees", {
+          name: (companyFormData as any)[0].name,
+          email: (companyFormData as any)[0].email,
+          description: (companyFormData as any)[0].description,
+          employees: employeeFormsData,
+        });
+      } catch (error) {
+        console.error(error);
+        toastError("Something went wrong!");
+      }
+
       toastSuccess("Forms have been sent successfully");
       return true;
     }

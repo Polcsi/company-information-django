@@ -38,28 +38,11 @@ const CompanyRow = ({
       refreshWhenOffline: true,
       refreshWhenHidden: false,
       revalidateOnMount: true,
-      // Retry configuration
-      onErrorRetry: (error, _key, _config, revalidate, { retryCount }) => {
-        // Never retry on 404.
-        if (error.status === 404) return;
-
-        // Only retry up to 3 times.
-        if (retryCount >= 3) return;
-
-        // Retry after 3 seconds.
-        setTimeout(() => revalidate({ retryCount }), 3000);
-      },
-      // Success handler
-      onSuccess() {},
-      // Loading slow handler
-      onLoadingSlow() {},
       onError(error) {
         console.log(`%c ${error}`, "color: red");
       },
     }
   );
-
-  console.log(data);
 
   const handleDelete = async () => {
     try {
