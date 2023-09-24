@@ -188,7 +188,7 @@ body {
 .input:focus {
   border: 3px solid white;
 }
-#submitbtn {
+.submitbtn {
   width: 150px;
   font-size: clamp(0.8rem, 1.7vw, 1rem);
   justify-self: start;
@@ -201,14 +201,15 @@ body {
   border-left: 1px solid var(--glassmorphic);
   border-top: 1px solid var(--glassmorphic);
   border-radius: 5000px;
-  width: clamp(110px, 15vw, 180px);
-  padding: clamp(0.6rem, 1.2vw, 0.8rem);
+  width: clamp(110px, 14vw, 160px);
+  padding: clamp(0.4rem, 1vw, 0.7rem);
   font-family: Montserrat, sans-serif;
   transition: all 0.2s ease-in-out;
   text-shadow: var(--text-shadow);
   font-weight: 500;
   border: 3px solid transparent;
   outline: none;
+  cursor: pointer;
 }
 #submitbtn:focus {
   border: 3px solid white;

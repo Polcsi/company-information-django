@@ -55,7 +55,7 @@ const CompanyDataForm = () => {
         ></textarea>
       </form>
       <button
-        id="submitbtn"
+        className="submitbtn"
         type="button"
         onClick={async () => {
           // Form submission

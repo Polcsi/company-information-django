@@ -277,6 +277,8 @@ const useGlobalAppContext = ({}: GlobalContextType) => {
     companyEmailRef,
     companyDescriptionRef,
     dataJSON,
+    toastError,
+    toastSuccess,
   };
 };
 
@@ -295,6 +297,8 @@ const initContextState: UseGlobalAppContextType = {
   companyEmailRef: { current: null },
   companyDescriptionRef: { current: null },
   dataJSON: "",
+  toastError: () => {},
+  toastSuccess: () => {},
 };
 
 // Creating the GlobalContext:

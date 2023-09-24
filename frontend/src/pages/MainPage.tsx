@@ -1,11 +1,49 @@
+import axios, { AxiosError } from "axios";
 import Background from "../layout/Background";
 import { GoOrganization } from "react-icons/go";
 import { SiAwsorganizations } from "react-icons/si";
 import { useNavigate } from "react-router-dom";
+import useSWR from "swr";
+import { useGlobalContext } from "../context";
+import { CompanyData } from "../components/CompanyList";
 
 const MainPage = () => {
   // useNavigate is a hook that allows us to navigate to a different page
   const navigate = useNavigate();
+  // Accessing the toastError function from the global context
+  const { toastError } = useGlobalContext();
+  // Fetching data from the backend
+  const fetcher = (url: string) =>
+    axios.get(url).then((res) => {
+      return res.data;
+    });
+
+  const { data } = useSWR<CompanyData[], AxiosError>(
+    "http://127.0.0.1:8000/company/",
+    fetcher,
+    {
+      refreshInterval: 1000,
+      revalidateOnFocus: true,
+      refreshWhenOffline: true,
+      refreshWhenHidden: false,
+      revalidateOnMount: true,
+      // Retry configuration
+      onErrorRetry: (error, _key, _config, revalidate, { retryCount }) => {
+        // Never retry on 404.
+        if (error.status === 404) return;
+
+        // Only retry up to 3 times.
+        if (retryCount >= 3) return;
+
+        // Retry after 3 seconds.
+        setTimeout(() => revalidate({ retryCount }), 3000);
+      },
+      onError(error) {
+        toastError("Something went wrong");
+        console.log(`%c ${error}`, "color: red");
+      },
+    }
+  );
 
   return (
     <Background>
@@ -59,8 +97,14 @@ const MainPage = () => {
               provident enim, fugiat accusantium.
             </p>
             <div className="main-page-indicator">
-              <span style={{ fontWeight: "600" }}>0</span>
-              <span>Copmany</span>
+              <span style={{ fontWeight: "600" }}>
+                {data ? data?.length : 0}
+              </span>
+              <span>
+                {(data?.length ? data?.length : 0) > 1
+                  ? "Companies"
+                  : "Company"}
+              </span>
             </div>
           </div>
           <div
