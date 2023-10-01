@@ -7,11 +7,12 @@ class Employee(models.Model):
         ('software engineer', 'Software Engineer'),
         ('data scientist', 'Data Scientist'),
         ('product manager', 'Product Manager'),
-        ('business analyst', 'Business Analyst'),
+        ('data analyst', 'Data Analyst'),
         ('software developer', 'Software Developer'),
         ('ui/ux designer', 'Ui/UX Designer'), 
         ('manager', 'Manager'),
-        ('software tester', 'Software Tester')
+        ('software tester', 'Software Tester'),
+        ('accountant', 'Accountant')
     ]
     employeeID = models.BigAutoField(primary_key=True)
     companyID = models.ForeignKey(Company, db_column="companyID", related_name='employees', on_delete=models.CASCADE)

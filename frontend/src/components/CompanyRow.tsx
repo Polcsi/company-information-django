@@ -4,8 +4,9 @@ import { BiTrash } from "react-icons/bi";
 import axios, { AxiosError } from "axios";
 import { CompanyData } from "../pages/Companies";
 import useSWR from "swr";
+import { useNavigate } from "react-router-dom";
 
-interface FullCompanyData {
+export interface FullCompanyData {
   companyID: number;
   description: string;
   email: string;
@@ -24,6 +25,8 @@ const CompanyRow = ({
   name,
   email,
 }: Omit<CompanyData, "description">) => {
+  const navigate = useNavigate();
+
   const fetcher = (url: string) =>
     axios.get(url).then((res) => {
       return res.data;
@@ -52,8 +55,16 @@ const CompanyRow = ({
     }
   };
 
+  const handleClick = () => {
+    navigate(`/companies/${companyID}`);
+  };
+
   return (
-    <article className="company-row" id={`${companyID}-company`}>
+    <article
+      className="company-row"
+      id={`${companyID}-company`}
+      onClick={handleClick}
+    >
       <div className="company-row-logo">
         <GoOrganization />
       </div>

@@ -8,15 +8,20 @@ import { useGlobalContext } from "../../context";
 interface CustomSliderProps {
   min: number;
   max: number;
+  value?: number;
 }
 
-const CustomSlider = ({ min, max }: CustomSliderProps) => {
+const CustomSlider = ({ min, max, value }: CustomSliderProps) => {
   /* Define variables */
   const innerRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLInputElement>(null);
   const sliderContainer = useRef(null);
   const sliderTrack = useRef<HTMLDivElement>(null);
   const { setNumberOfEmployees } = useGlobalContext();
+
+  useEffect(() => {
+    update();
+  }, []);
 
   /* Updates the ui looking and store the setted value  */
   const update = useCallback(() => {
@@ -36,7 +41,7 @@ const CustomSlider = ({ min, max }: CustomSliderProps) => {
     );
 
     setNumberOfEmployees(parseInt(sliderRef.current.value));
-  }, [max, min, setNumberOfEmployees]);
+  }, [max, min, setNumberOfEmployees, value]);
 
   /* useEffect for initialize component variables */
   useEffect(() => {
@@ -65,7 +70,7 @@ const CustomSlider = ({ min, max }: CustomSliderProps) => {
         type="range"
         min={min}
         max={max}
-        defaultValue={min}
+        defaultValue={value}
       />
       <div id="slider-track" ref={sliderTrack}></div>
       <div className="value-outer">

@@ -175,7 +175,7 @@ body {
   border-left: 1px solid var(--glassmorphic);
   border-top: 1px solid var(--glassmorphic);
   border-radius: 5px;
-  width: 230px;
+  width: auto;
   padding: 1em;
   font-family: Montserrat, sans-serif;
   transition: all 0.2s ease-in-out;

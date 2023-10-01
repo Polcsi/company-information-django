@@ -6,6 +6,7 @@ import ErrorPage from "./pages/ErrorPage";
 import ResultsPage from "./pages/ResultsPage";
 import MainPage from "./pages/MainPage";
 import Companies from "./pages/Companies";
+import SingleCompany from "./pages/SingleCompany";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/companies" element={<Companies />} />
+          <Route path="/companies/:id" element={<SingleCompany />} />
           <Route
             path="/create-company"
             element={<CreateCompanyWithEmployees />}
