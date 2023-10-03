@@ -45,7 +45,7 @@ def company_detail(request, id, format=None):
     
     if request.method == 'PUT':
         # update the company with the request data
-        serializer = CompanySerializer(company, data=request.data)
+        serializer = CompanySerializer(company, data=request.data, partial=False)
         # check if the data is valid
         if serializer.is_valid():
             # save the updated company to the database

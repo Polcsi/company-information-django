@@ -24,19 +24,21 @@ class CompanyEmployeeSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         employees_data = validated_data.pop('employees')
         
+        # Get company
+        company = Company.objects.get(companyID=instance[0].companyID)
         # Update the company informations
-        instance[0].name = validated_data.get('name', instance[0].name)
-        instance[0].email = validated_data.get('email', instance[0].email)
-        instance[0].description = validated_data.get('description', instance[0].description)
-        instance[0].save()
+        company.name = validated_data.get('name', company.name)
+        company.email = validated_data.get('email', company.email)
+        company.description = validated_data.get('description', company.description)
+        # Save company informations
+        company.save()
         
         # Update the employees
         keep_employees = []
-        existing_ids = [employee.employeeID for employee in instance[0].employees.all()]
+
         for employee_data in employees_data:
             if 'employeeID' in employee_data.keys():
                 if Employee.objects.filter(employeeID=employee_data['employeeID']).exists():
-                    print("Employee exists")
                     # Update the existing employee
                     employee = Employee.objects.get(employeeID=employee_data['employeeID'])
                     employee.name = employee_data.get('name', employee.name)
