@@ -96,7 +96,19 @@ const CompanyRow = ({
           <BiTrash />
         </button>
       </div>
-      <div className="number-of-employees">
+      <div
+        className="number-of-employees"
+        data-tooltip-id="employees-tooltip"
+        data-tooltip-html={`${
+          data
+            ? data[0].employees
+                .map((employee) => {
+                  return `${employee.name}`;
+                })
+                .join("<br />")
+            : ""
+        }`}
+      >
         <BsPersonLinesFill />
         <span>{data ? data[0].employees.length : 0}</span>
       </div>

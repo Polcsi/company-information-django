@@ -9,6 +9,7 @@ import "./style/homeButton.css";
 import "./style/mainPage.css";
 import "./style/companiesPage.css";
 import "react-toastify/dist/ReactToastify.css";
+import "react-tooltip/dist/react-tooltip.css";
 import { GlobalContextProvider } from "./context";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

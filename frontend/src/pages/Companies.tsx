@@ -5,6 +5,7 @@ import CompanyForm from "../components/forms/CompanyForm";
 import EmployeeForm from "../components/forms/EmployeeForm";
 import axios, { AxiosError } from "axios";
 import useSWR from "swr";
+import { Tooltip } from "react-tooltip";
 
 export interface CompanyData {
   companyID: number;
@@ -67,11 +68,15 @@ const Companies = () => {
           <EmployeeForm companies={data} />
         </header>
       </aside>
+
       <main className="companies-page section">
         <header>
           <h1>Companies</h1>
           <p>This section you can manage companies data</p>
         </header>
+        <div style={{ zIndex: "1000", position: "absolute" }}>
+          <Tooltip id="employees-tooltip" place="bottom" />
+        </div>
         <CompanyList companies={data} />
       </main>
       <HomeButton />
