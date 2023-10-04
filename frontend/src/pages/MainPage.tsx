@@ -5,7 +5,7 @@ import { SiAwsorganizations } from "react-icons/si";
 import { useNavigate } from "react-router-dom";
 import useSWR from "swr";
 import { useGlobalContext } from "../context";
-import { CompanyData } from "../components/CompanyList";
+import { CompanyData } from "./Companies";
 
 const MainPage = () => {
   // useNavigate is a hook that allows us to navigate to a different page

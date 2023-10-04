@@ -21,6 +21,10 @@ This is a Django backend application which is responsible for the following task
       - [Update Employee](#update-employee)
       - [Delete Employee](#delete-employee)
       - [Get Employees](#get-employees)
+    - [Combined Endpoints](#combined-endpoints)
+      - [Create Company with list of employees](#create-company-with-list-of-employees)
+      - [Update Company with list of employees](#update-company-with-list-of-employees)
+      - [Get Companies and employees](#get-companies-and-employees)
   - [Models](#models)
     - [Company](#company)
     - [Employee](#employee)
@@ -33,52 +37,61 @@ This is a Django backend application which is responsible for the following task
 git clone https://github.com/Polcsi/company-information-django.git
 ```
 
-2. Create a virtual environment
+3. Go to the backend folder
 
 ```bash
+cd company-information-django/backend
+```
+
+3. Create a virtual environment
+
+```ps
 python3 -m venv venv
 ```
 
-3. Activate the virtual environment
+4. Activate the virtual environment
+
+_**Windows**_:
 
 ```bash
-source venv/bin/activate
+.venv/Scripts/activate
 ```
 
-4. Install the requirements
+5. Install the requirements
 
-5. Run the migrations
+```ps
+pip install django
+pip install djangorestframework
+```
 
-```bash
+6. Run the migrations
+
+```ps
 python manage.py migrate
 ```
 
 6. Run the server
 
-```bash
+```ps
 python manage.py runserver
 ```
 
 ## Endpoints
 
-- [Companies](#companies)
-  - [Create Company](#create-company)
-  - [Update Company](#update-company)
-  - [Delete Company](#delete-company)
-  - [Get Companies](#get-companies)
-- [Employees](#employees)
-  - [Create Employee](#create-employee)
-  - [Update Employee](#update-employee)
-  - [Delete Employee](#delete-employee)
-  - [Get Employees](#get-employees)
-
 ### Companies
+
+| Endpoint      | Method                                                    | Description                              |
+| ------------- | --------------------------------------------------------- | ---------------------------------------- |
+| /company      | <span style="color: yellow;font-weight: bold">POST</span> | [Create a new company ](#create-company) |
+| /company/:id/ | <span style="color: cyan;font-weight: bold">PUT</span>    | [Update a company](#update-company)      |
+| /company/:id/ | <span style="color: red;font-weight: bold">DELETE</span>  | [Delete a company](#delete-company)      |
+| /company      | <span style="color: lime;font-weight: bold">GET</span>    | [Get all companies](#get-companies)      |
 
 #### Create Company
 
-| URL      | Method | Data Properties                          | Success Response                                          |
-| -------- | ------ | ---------------------------------------- | --------------------------------------------------------- |
-| /company | `POST` | **name**<br>**email**<br>**description** | **companyID**<br>**name**<br>**email**<br>**description** |
+| URL      | Method |
+| -------- | ------ |
+| /company | `POST` |
 
 **Data Params**:
 
@@ -90,15 +103,26 @@ python manage.py runserver
 }
 ```
 
+**Success Response:**
+
+- **Code:** 201 CREATED <br />
+- **Content:**
+
+```json
+{
+  "id": 1,
+  "name": "string",
+  "email": "string",
+  "description": "string",
+  "number_of_employees": "integer"
+}
+```
+
 #### Update Company
 
-- **URL**
-
-/api/companies/:id/
-
-- **Method:**
-
-`PUT`
+| URL           | Method |
+| ------------- | ------ |
+| /company/:id/ | `PUT`  |
 
 - **Data Params**
 
@@ -128,13 +152,9 @@ python manage.py runserver
 
 #### Delete Company
 
-- **URL**
-
-  /api/companies/:id/
-
-- **Method:**
-
-  `DELETE`
+| URL           | Method   |
+| ------------- | -------- |
+| /company/:id/ | `DELETE` |
 
 - **Success Response:**
 
@@ -142,86 +162,85 @@ python manage.py runserver
 
 #### Get Companies
 
-- **URL**
-
-  /api/companies/
-
-- **Method:**
-
-  `GET`
+| URL      | Method |
+| -------- | ------ |
+| /company | `GET`  |
 
 - **Success Response:**
 
   - **Code:** 200 OK <br />
   - **Content:**
 
-  ```json
-  [
-    {
-      "id": 1,
-      "name": "string",
-      "email": "string",
-      "description": "string",
-      "number_of_employees": "integer"
-    }
-  ]
-  ```
+```json
+[
+  {
+    "id": "number",
+    "name": "string",
+    "email": "string",
+    "description": "string"
+  }
+]
+```
 
 ### Employees
 
+| Endpoint      | Method                                                    | Description                               |
+| ------------- | --------------------------------------------------------- | ----------------------------------------- |
+| /employee/    | <span style="color: yellow;font-weight: bold">POST</span> | [Create a new employee](#create-employee) |
+| /employee/:id | <span style="color: cyan;font-weight: bold">PUT</span>    | [Update an employee](#update-employee)    |
+| /employee/:id | <span style="color: red;font-weight: bold">DELETE</span>  | [Delete an employee](#delete-employee)    |
+| /employee/    | <span style="color: lime;font-weight: bold">GET</span>    | [Get all employees](#get-employees)       |
+| /employee/:id | <span style="color: lime;font-weight: bold">GET</span>    | Get an employee by id                     |
+
 #### Create Employee
 
-- **URL**
-
-  /api/employees/
-
-- **Method:**
-
-  `POST`
+| URL       | Method |
+| --------- | ------ |
+| employee/ | `POST` |
 
 - **Data Params**
 
   ```json
   {
+    "company": "integer",
     "name": "string",
     "age": "integer",
     "email": "string",
     "job": "string",
-    "company": "integer"
+    "cv": "string"
   }
   ```
 
 - **Success Response:** - **Code:** 201 CREATED <br /> - **Content:**
-  `json
+
+```json
 {
-    "id": 1,
-    "name": "string",
-    "age": "integer",
-    "email": "string",
-    "job": "string",
-    "company": "integer"
+  "employeeID": "nubmer",
+  "companyID": "number",
+  "name": "string",
+  "email": "string",
+  "age": "number",
+  "job": "string",
+  "cv": "string"
 }
-`
+```
 
 #### Update Employee
 
-- **URL**
-
-  /api/employees/:id/
-
-- **Method:**
-
-  `PUT`
+| URL           | Method |
+| ------------- | ------ |
+| employee/:id/ | `PUT`  |
 
 - **Data Params**
 
   ```json
   {
+    "companyID": "integer",
     "name": "string",
     "age": "integer",
     "email": "string",
     "job": "string",
-    "company": "integer"
+    "cv": "string"
   }
   ```
 
@@ -230,26 +249,23 @@ python manage.py runserver
   - **Code:** 200 OK <br />
   - **Content:**
 
-  ```json
-  {
-    "id": 1,
-    "name": "string",
-    "age": "integer",
-    "email": "string",
-    "job": "string",
-    "company": "integer"
-  }
-  ```
+```json
+{
+  "employeeID": "nubmer",
+  "companyID": "number",
+  "name": "string",
+  "email": "string",
+  "age": "number",
+  "job": "string",
+  "cv": "string"
+}
+```
 
 #### Delete Employee
 
-- **URL**
-
-  /api/employees/:id/
-
-- **Method:**
-
-  `DELETE`
+| URL           | Method   |
+| ------------- | -------- |
+| employee/:id/ | `DELETE` |
 
 - **Success Response:**
 
@@ -257,31 +273,142 @@ python manage.py runserver
 
 #### Get Employees
 
-- **URL**
-
-  /api/employees/
-
-- **Method:**
-
-  `GET`
+| URL       | Method |
+| --------- | ------ |
+| employee/ | `GET`  |
 
 - **Success Response:**
 
   - **Code:** 200 OK <br />
   - **Content:**
 
-  ```json
-  [
+```json
+[
+  {
+    "employeeID": "nubmer",
+    "companyID": "number",
+    "name": "string",
+    "email": "string",
+    "age": "number",
+    "job": "string",
+    "cv": "string"
+  }
+]
+```
+
+#### Get Employee by id
+
+| URL           | Method |
+| ------------- | ------ |
+| employee/:id/ | `GET`  |
+
+- **Success Response:**
+
+  - **Code:** 200 OK <br />
+  - **Content:**
+
+```json
+{
+  "employeeID": "nubmer",
+  "companyID": "number",
+  "name": "string",
+  "email": "string",
+  "age": "number",
+  "job": "string",
+  "cv": "string"
+}
+```
+
+## Combined Endpoints
+
+| Endpoint                  | Method                                                    | Description                                                                           |
+| ------------------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| company/add_employees     | <span style="color: yellow;font-weight: bold">POST</span> | [Create a new company with list of employees](#create-company-with-list-of-employees) |
+| company/:**id**/employees | <span style="color: cyan;font-weight: bold">PUT</span>    | [Update a company and employees](#update-company-with-list-of-employees)              |
+| company/:**id**/employees | <span style="color: lime;font-weight: bold">GET</span>    | [Get all companies with list of employees](#get-companies)                            |
+
+#### Create Company with list of employees
+
+| URL                   | Method |
+| --------------------- | ------ |
+| company/add_employees | `POST` |
+
+- **Data Params**
+
+```json
+{
+  "name": "string",
+  "email": "string",
+  "description": "string",
+  "employees": [
     {
-      "id": 1,
       "name": "string",
       "age": "integer",
       "email": "string",
       "job": "string",
-      "company": "integer"
+      "cv": "string"
     }
   ]
-  ```
+}
+```
+
+### Update Company with list of employees
+
+| URL                       | Method |
+| ------------------------- | ------ |
+| company/:**id**/employees | `PUT`  |
+
+- **Data Params**
+
+```json
+{
+  "name": "string",
+  "email": "string",
+  "description": "string",
+  "employees": [
+    {
+      "employeeID": "number",
+      "name": "string",
+      "age": "integer",
+      "email": "string",
+      "job": "string",
+      "cv": "string"
+    }
+  ]
+}
+```
+
+### Get Companies and employees
+
+| URL                       | Method |
+| ------------------------- | ------ |
+| company/:**id**/employees | `GET`  |
+
+- **Success Response:**
+
+  - **Code:** 200 OK <br />
+  - **Content:**
+
+```json
+[
+  {
+    "companyID": "number",
+    "name": "string",
+    "email": "string",
+    "description": "string",
+    "employees": [
+      {
+        "employeeID": "nubmer",
+        "name": "string",
+        "email": "string",
+        "age": "number",
+        "job": "string",
+        "cv": "string"
+      }
+    ]
+  }
+]
+```
 
 ## Models
 
