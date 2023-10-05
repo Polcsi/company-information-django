@@ -184,13 +184,13 @@ python manage.py runserver
 
 ### Employees
 
-| Endpoint      | Method                                                    | Description                               |
-| ------------- | --------------------------------------------------------- | ----------------------------------------- |
-| /employee/    | <span style="color: yellow;font-weight: bold">POST</span> | [Create a new employee](#create-employee) |
-| /employee/:id | <span style="color: cyan;font-weight: bold">PUT</span>    | [Update an employee](#update-employee)    |
-| /employee/:id | <span style="color: red;font-weight: bold">DELETE</span>  | [Delete an employee](#delete-employee)    |
-| /employee/    | <span style="color: lime;font-weight: bold">GET</span>    | [Get all employees](#get-employees)       |
-| /employee/:id | <span style="color: lime;font-weight: bold">GET</span>    | Get an employee by id                     |
+| Endpoint      | Method                                                    | Description                                  |
+| ------------- | --------------------------------------------------------- | -------------------------------------------- |
+| /employee/    | <span style="color: yellow;font-weight: bold">POST</span> | [Create a new employee](#create-employee)    |
+| /employee/:id | <span style="color: cyan;font-weight: bold">PUT</span>    | [Update an employee](#update-employee)       |
+| /employee/:id | <span style="color: red;font-weight: bold">DELETE</span>  | [Delete an employee](#delete-employee)       |
+| /employee/    | <span style="color: lime;font-weight: bold">GET</span>    | [Get all employees](#get-employees)          |
+| /employee/:id | <span style="color: lime;font-weight: bold">GET</span>    | [Get an employee by id](#get-employee-by-id) |
 
 #### Create Employee
 
@@ -325,7 +325,7 @@ python manage.py runserver
 | ------------------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | company/add_employees     | <span style="color: yellow;font-weight: bold">POST</span> | [Create a new company with list of employees](#create-company-with-list-of-employees) |
 | company/:**id**/employees | <span style="color: cyan;font-weight: bold">PUT</span>    | [Update a company and employees](#update-company-with-list-of-employees)              |
-| company/:**id**/employees | <span style="color: lime;font-weight: bold">GET</span>    | [Get all companies with list of employees](#get-companies)                            |
+| company/:**id**/employees | <span style="color: lime;font-weight: bold">GET</span>    | [Get all companies with list of employees](#get-companies-and-employees)              |
 
 #### Create Company with list of employees
 
