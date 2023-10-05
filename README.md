@@ -1,6 +1,6 @@
 # This is a React Application which collect company and employees information
 
-Application seperated three pages:
+Application seperated six pages:
 
 - [/](#home-page) home page
 - [/companies](#companies-companies) where the user be able to update, delete and create company and more
