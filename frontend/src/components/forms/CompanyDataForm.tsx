@@ -46,7 +46,8 @@ const CompanyDataForm = () => {
           onInput={(e: FormEvent<HTMLInputElement>) => styleRequiredInput(e)} // style if input field is not empty
           onInvalid={(e: FormEvent<HTMLInputElement>) => invalidEmail(e)} // validate email
         ></input>
-        <CustomSlider min={1} max={100} /> {/* Custom slider component */}
+        <CustomSlider min={1} value={1} max={100} />
+        {/* Custom slider component */}
         <textarea
           id="description"
           placeholder="Description"
