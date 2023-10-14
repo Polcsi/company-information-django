@@ -1,3 +1,4 @@
+import React from "react";
 import { GoOrganization } from "react-icons/go";
 import { BsPersonLinesFill } from "react-icons/bs";
 import { BiTrash } from "react-icons/bi";
@@ -5,6 +6,7 @@ import axios, { AxiosError } from "axios";
 import { CompanyData } from "../pages/Companies";
 import useSWR from "swr";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export interface FullCompanyData {
   companyID: number;
@@ -26,6 +28,7 @@ const CompanyRow = ({
   email,
 }: Omit<CompanyData, "description">) => {
   const navigate = useNavigate();
+  const [isDeleting, setIsDeleting] = React.useState(false);
 
   const fetcher = (url: string) =>
     axios.get(url).then((res) => {
@@ -48,15 +51,20 @@ const CompanyRow = ({
   );
 
   const handleDelete = async () => {
+    setIsDeleting(true);
     try {
-      await axios.delete(`http://127.0.0.1:8000/company/${companyID}`);
+      await setTimeout(async () => {
+        await axios.delete(`http://127.0.0.1:8000/company/${companyID}`);
+      }, 1000);
     } catch (error) {
+      setIsDeleting(false);
+      toast.error("Error deleting company");
       console.error(error);
     }
   };
 
   const handleClick = () => {
-    navigate(`/companies/${companyID}`);
+    if (!isDeleting) navigate(`/companies/${companyID}`);
   };
 
   return (
@@ -64,6 +72,11 @@ const CompanyRow = ({
       className="company-row"
       id={`${companyID}-company`}
       onClick={handleClick}
+      aria-disabled={isDeleting}
+      style={{
+        opacity: isDeleting ? 0.5 : 1,
+        cursor: isDeleting ? "not-allowed" : "pointer",
+      }}
     >
       <div className="company-row-logo">
         <GoOrganization />
@@ -89,9 +102,14 @@ const CompanyRow = ({
             verticalAlign: "middle",
             display: "flex",
             alignItems: "center",
-            cursor: "pointer",
+            cursor: isDeleting ? "not-allowed" : "pointer",
           }}
-          onClick={handleDelete}
+          className="delete-company-button"
+          disabled={isDeleting}
+          onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+            e.stopPropagation();
+            handleDelete();
+          }}
         >
           <BiTrash />
         </button>
@@ -101,7 +119,7 @@ const CompanyRow = ({
         data-tooltip-id="employees-tooltip"
         data-tooltip-html={`${
           data
-            ? data[0].employees
+            ? data[0]?.employees
                 .map((employee) => {
                   return `${employee.name}`;
                 })
@@ -110,7 +128,7 @@ const CompanyRow = ({
         }`}
       >
         <BsPersonLinesFill />
-        <span>{data ? data[0].employees.length : 0}</span>
+        <span>{data ? data[0]?.employees.length : 0}</span>
       </div>
     </article>
   );

@@ -8,6 +8,7 @@ import "./style/topScrollButton.css";
 import "./style/homeButton.css";
 import "./style/mainPage.css";
 import "./style/companiesPage.css";
+import "./style/loading.css";
 import "react-toastify/dist/ReactToastify.css";
 import "react-tooltip/dist/react-tooltip.css";
 import { GlobalContextProvider } from "./context";

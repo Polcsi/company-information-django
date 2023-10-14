@@ -16,7 +16,6 @@ const CompanyForm = () => {
           description: string;
         }>
       ) => {
-        console.log(values);
         try {
           await axios.post("http://127.0.0.1:8000/company/", values);
           helpers.resetForm();

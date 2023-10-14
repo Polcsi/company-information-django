@@ -51,8 +51,6 @@ const SingleCompany = () => {
     }
   );
 
-  console.log(data);
-
   const handleUpdate = async (values: UpdateFormData) => {
     try {
       await axios.put(`http://127.0.0.1:8000/company/${id}/employees`, values);

@@ -57,6 +57,7 @@ const MainPage = () => {
           justifyContent: "center",
           alignItems: "center",
           gap: "3rem",
+          paddingBottom: "3rem",
         }}
       >
         <header

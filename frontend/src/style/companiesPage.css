@@ -157,3 +157,10 @@
   align-items: center;
   gap: 0.5rem;
 }
+.delete-company-button {
+  will-change: scale;
+  transition: scale 0.2s ease-in-out;
+}
+.delete-company-button:hover {
+  scale: 1.15;
+}
